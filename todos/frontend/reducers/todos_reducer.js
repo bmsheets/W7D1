@@ -1,3 +1,6 @@
+import RECEIVE_TODO from '../actions/todo_actions';
+import RECEIVE_TODOS from '../actions/todo_actions';
+
 const initialState = {
   1: {
     id: 1,
@@ -14,7 +17,18 @@ const initialState = {
 };
 
 const todosReducer = function(state = initialState, action) {
+  let newState;
   switch(action.type) {
+    case RECEIVE_TODOS:
+      newState = {};
+      action.todos.forEach((todo) => {
+        newState[todo.id] = todo;
+      });
+      return newState;
+    case RECEIVE_TODO:
+      newState = {};
+      newState[action.todo.id] = action.todo;
+      return merge({}, state, newState);
     default:
       return state;
   }
