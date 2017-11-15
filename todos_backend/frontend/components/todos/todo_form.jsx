@@ -24,12 +24,7 @@ class TodoForm extends React.Component {
       body: this.state.body,
       done: false
     }
-    this.props.createTodo(todo).then(
-      () => this.setState({
-        title: '',
-        body: ''
-      })
-    );
+    this.props.formMethod(todo);
   }
 
   render() {
